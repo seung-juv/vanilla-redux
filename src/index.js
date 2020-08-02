@@ -4,11 +4,19 @@ const add = document.getElementById("add");
 const minus = document.getElementById("minus");
 const number = document.querySelector("span");
 
+const ADD = "Add";
+const MINUS = "Minus";
+
 const countModifier = (count = 0, action) => {
-  if (action.type === "Add") {
-    count++;
-  } else if (action.type === "Minus") {
-    count--;
+  switch (action.type) {
+    case ADD:
+      count++;
+      break;
+    case MINUS:
+      count--;
+      break;
+    default:
+      break;
   }
   return count;
 };
@@ -22,11 +30,11 @@ const onChange = () => {
 countStore.subscribe(onChange);
 
 const handleAdd = () => {
-  countStore.dispatch({ type: "Add" });
+  countStore.dispatch({ type: ADD });
 };
 
 const handleMinus = () => {
-  countStore.dispatch({ type: "Minus" });
+  countStore.dispatch({ type: MINUS });
 };
 
 add.addEventListener("click", handleAdd);
