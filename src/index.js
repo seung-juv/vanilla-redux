@@ -8,18 +8,19 @@ const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 
 const reducer = (state = [], action) => {
-  switch (action) {
+  switch (action.type) {
     case ADD_TODO:
-      break;
+      return [...state, { text: action.text, id: Date.now() }];
     case DELETE_TODO:
-      break;
+      return [];
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
 const store = createStore(reducer);
+
+store.subscribe(() => console.log(store.getState()));
 
 const onSubmit = e => {
   e.preventDefault();
